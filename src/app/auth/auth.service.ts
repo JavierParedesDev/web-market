@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from '@angular/fire/auth';
 import { Router } from '@angular/router'; 
 
 @Injectable({
@@ -40,5 +40,17 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.currentUser !== null;
+  }
+
+
+  async register(name : string ,email: string, password: string): Promise<void> {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      this.currentUser = userCredential.user;
+      console.log('User registered:', this.currentUser);
+    } catch (error) {
+      console.error('Registration failed:', error);
+      throw error; // Manejar el error más adelante
+    }
   }
 }
