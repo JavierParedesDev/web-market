@@ -1,0 +1,43 @@
+<!-- src/app/home/home.component.html -->
+<div class="home-container">
+    <header class="header">
+      <h1>Web Market</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a (click)="handleAuthAction()" class="login-button">
+            {{ isUserAuthenticated() ? 'Cerrar Sesión' : 'Iniciar Sesión' }}
+          </a></li> 
+        </ul>
+      </nav>
+    </header>
+  
+    <!-- Image Carousel -->
+    <div class="carousel">
+      <img src="https://fcc.flixcart.com/www/assets/mon/walmartchile/1727918360412-cm1slz7to2f5gh0rfp1poaf56.jpg" alt="Banner 1" />
+    </div>
+  
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+      <h2>Productos Destacados</h2>
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of products">
+          <a [routerLink]="['/product', product.id]">
+            <img [src]="product.imageUrl" alt="{{ product.title }}" />
+            <h3>{{ product.title }}</h3>
+            <p>${{ product.price }}</p>
+          </a>
+          <button>Añadir al carrito</button>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Web Market. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+  

@@ -1,0 +1,30 @@
+<!-- product.component.html -->
+<div class="product-container">
+   
+    <img [src]="product.imageUrl" alt="{{ product.title }}" class="product-image" />
+    <div class="product-details">
+        <h2 class="product-title">{{ product.title }}</h2>
+        <p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde maiores aspernatur magnam sint alias est delectus amet culpa reiciendis, molestias reprehenderit minus? Pariatur reiciendis rem corrupti explicabo perferendis. Explicabo, quae?</p>
+        <p class="product-price">${{ product.price }}</p>
+        <h4>Calificación Promedio: <span class="average-rating">{{ product.averageRating | number:'1.1-1' }} estrellas</span></h4>
+        <button class="add-to-cart-button">Agregar al Carrito</button>
+    </div>
+  
+    <!-- Sección de Comentarios -->
+    <div class="comments-section">
+      <h3>Comentarios</h3>
+      <div *ngFor="let comment of product.comments">
+        <p><strong>{{ comment.user }}</strong> ({{ comment.rating }} estrellas): {{ comment.text }}</p>
+      </div>
+  
+      <!-- Formulario para agregar nuevo comentario -->
+      <h4>Deja un comentario:</h4>
+      <input [(ngModel)]="newComment.user" placeholder="Tu nombre" />
+      <textarea [(ngModel)]="newComment.text" placeholder="Tu comentario"></textarea>
+      <input type="number" [(ngModel)]="newComment.rating" min="1" max="5" placeholder="Calificación (1-5)" />
+      <button (click)="addComment()">Enviar Comentario</button>
+  
+     
+    </div>
+  </div>
+  
